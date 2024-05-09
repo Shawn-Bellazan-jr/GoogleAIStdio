@@ -1,0 +1,6 @@
+@GoogleAIStudio.Api_HostAddress = http://localhost:5023
+
+GET {{GoogleAIStudio.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
