@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34902.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAIStudio.Api", "src\GoogleAIStudio.Api\GoogleAIStudio.Api.csproj", "{2217CB7A-E033-4A19-8965-5CD7FFBDD206}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogleAIStudio.Api", "src\GoogleAIStudio.Api\GoogleAIStudio.Api.csproj", "{2217CB7A-E033-4A19-8965-5CD7FFBDD206}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogleAIStudio.Core", "src\GoogleAIStudio.Core\GoogleAIStudio.Core.csproj", "{DCF44B8B-71D4-430D-8EFB-4278C34A5F3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogleAIStudio.Domain", "src\GoogleAIStudio.Domain\GoogleAIStudio.Domain.csproj", "{0B0CE2C8-BC62-44DA-8210-19DC3B441291}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogleAIStudio.Presentation", "src\GoogleAIStudio.Presentation\GoogleAIStudio.Presentation.csproj", "{EB759C85-D78A-4C19-B9D4-3E85C818025F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogleAIStudio.Infrastructure", "src\GoogleAIStudio.Infrastructure\GoogleAIStudio.Infrastructure.csproj", "{A592876D-15A3-4CE5-BD26-24CD3B614071}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogleAIStudio.Data", "src\GoogleAIStudio.Data\GoogleAIStudio.Data.csproj", "{F6B7618F-6D5D-4B88-8C82-A2DA7CB5F40E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{2217CB7A-E033-4A19-8965-5CD7FFBDD206}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2217CB7A-E033-4A19-8965-5CD7FFBDD206}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2217CB7A-E033-4A19-8965-5CD7FFBDD206}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCF44B8B-71D4-430D-8EFB-4278C34A5F3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCF44B8B-71D4-430D-8EFB-4278C34A5F3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCF44B8B-71D4-430D-8EFB-4278C34A5F3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCF44B8B-71D4-430D-8EFB-4278C34A5F3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B0CE2C8-BC62-44DA-8210-19DC3B441291}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B0CE2C8-BC62-44DA-8210-19DC3B441291}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B0CE2C8-BC62-44DA-8210-19DC3B441291}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B0CE2C8-BC62-44DA-8210-19DC3B441291}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB759C85-D78A-4C19-B9D4-3E85C818025F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB759C85-D78A-4C19-B9D4-3E85C818025F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB759C85-D78A-4C19-B9D4-3E85C818025F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB759C85-D78A-4C19-B9D4-3E85C818025F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A592876D-15A3-4CE5-BD26-24CD3B614071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A592876D-15A3-4CE5-BD26-24CD3B614071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A592876D-15A3-4CE5-BD26-24CD3B614071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A592876D-15A3-4CE5-BD26-24CD3B614071}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6B7618F-6D5D-4B88-8C82-A2DA7CB5F40E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6B7618F-6D5D-4B88-8C82-A2DA7CB5F40E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6B7618F-6D5D-4B88-8C82-A2DA7CB5F40E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6B7618F-6D5D-4B88-8C82-A2DA7CB5F40E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
