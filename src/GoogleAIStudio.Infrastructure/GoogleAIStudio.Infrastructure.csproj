@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GoogleAIStudio.Core\GoogleAIStudio.Core.csproj" />
+    <ProjectReference Include="..\GoogleAIStudio.Data\GoogleAIStudio.Data.csproj" />
+    <ProjectReference Include="..\GoogleAIStudio.Domain\GoogleAIStudio.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="RestSharp" Version="110.2.1-alpha.0.20" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,37 @@
-@GoogleAIStudio.Api_HostAddress = http://localhost:5023
+@HostAddress =  https://generativelanguage.googleapis.com/v1/models/gemini-pro
+@Resource = generateContent
+POST {{HostAddress}}:{{Resource}}
+x-goog-api-key: AIzaSyCk1_TBA0X4HIVjThXQUcEsnU8zSTapAko
 
-GET {{GoogleAIStudio.Api_HostAddress}}/weatherforecast/
-Accept: application/json
+{
+  "contents": [
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "1"
+        }
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        {
+          "text": "2"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "3"
+        },
+        
+      ]
+    },
+  ]
+}
+
 
 ###
