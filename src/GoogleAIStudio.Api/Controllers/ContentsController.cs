@@ -1,79 +1,58 @@
-﻿using AutoMapper;
-using GoogleAIStudio.Infrastructure.DTOs.PromptDtos;
-using GoogleAIStudio.Infrastructure.DTOs.PromptDTOs;
-using GoogleAIStudio.Infrastructure;
-using Microsoft.AspNetCore.Http;
+﻿using GoogleAIStudio.Infrastructure;
+using GoogleAIStudio.Infrastructure.Dtos.ContentDtos;
 using Microsoft.AspNetCore.Mvc;
-using GoogleAIStudio.Core.Models;
-using GoogleAIStudio.Infrastructure.Resources.ContentResources;
-using GoogleAIStudio.Infrastructure.DTOs.ContentDto;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace GoogleAIStudio.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContentsController : Controller
+    public class ContentsController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
 
-        public ContentsController(IUnitOfWork unitOfWork, IMapper mapper)
+        public ContentsController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _mapper = mapper;
         }
-
-        // GET: api/<ValuesController>
+        // GET: api/<ContentsController>
         [HttpGet]
-        public async Task<IEnumerable<ContentDto>> GetAllContent()
+        public async Task<string> Get()
         {
-            var response = await _unitOfWork.Contents.GetAsync();
-
-            if (response == null) BadRequest();
-            else if (response.Count() <= 0) NoContent();
-
-            var toDto = _mapper.Map<IEnumerable<ContentDto>>(response);
-            return toDto;
+            ICollection<PartDto> parts = new List<PartDto>()
+            {
+                new("Hello")
+            };
+            ICollection<ContentDto> contents = new List<ContentDto>()
+            {
+                new("user", parts)
+            };
+            PromptDto prompt = new(contents);
+            var request = await _unitOfWork.FreeformPrompts.SendPrompt(prompt);
+            return request;
         }
 
-        // GET api/<ValuesController>/5
-        [HttpGet("{resource.Id}")]
-        public async Task<ContentDto?> Get(GetContentResource resource)
+        // GET api/<ContentsController>/5
+        [HttpGet("{id}")]
+        public string Get(int id)
         {
-            // 1.  map dto to dbset
-            var dbSet = _mapper.Map<Content>(resource);
-
-            // 2. get dbset from database
-            var dbResponse = await _unitOfWork.Contents.GetAsync(dbSet);
-            // 2.1 return not found if response is null
-            if (dbResponse == null) NotFound();
-
-            // 3. map db response to a read dto
-            var responseDto = _mapper.Map<ContentDto>(dbResponse);
-            // 4. return response as a dto
-            return responseDto;
+            return "value";
         }
 
-        // POST api/<ValuesController>
+        // POST api/<ContentsController>
         [HttpPost]
-        public async Task<ContentDto> Post([FromBody] PostContentResource resource)
+        public void Post([FromBody] string value)
         {
-            // 1.1 map dto to dbset
-            var dbSet = _mapper.Map<Content>(resource);
-            var dbResponse = await _unitOfWork.Contents.AddAsync(dbSet);
-            await _unitOfWork.Save();
-            if (dbResponse == null) NotFound();
-            var contentDto = _mapper.Map<ContentDto>(dbResponse);
-            return contentDto;
         }
 
-        // PUT api/<ValuesController>/5
+        // PUT api/<ContentsController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<ValuesController>/5
+        // DELETE api/<ContentsController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

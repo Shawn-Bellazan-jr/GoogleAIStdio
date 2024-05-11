@@ -11,34 +11,33 @@ namespace GoogleAIStudio.Domain.Repositories
 {
     public abstract class GenericRepository<T> : IRepository<T> where T : BaseModel
     {
-        private readonly DbContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly DbContext _context;
+        protected readonly DbSet<T> _dbSet;
 
         public GenericRepository(DbContext context)
         {
             _context = context;
             _dbSet = _context.Set<T>();
         }
+
         public async Task<T?> AddAsync(T type)
         {
-            var response = await _dbSet.AddAsync(type);
-            
+            var response =  await _context.AddAsync(type);
             return response.Entity;
         }
 
-        public async Task<bool> ExistAsync(T type)
+        public async Task<bool> Delete(string id)
         {
-           return await _dbSet.AnyAsync(x => x.Id == type.Id);
-        }
-
-        public async Task<T?> GetAsync(T type)
-        {
-            return await _dbSet.FirstOrDefaultAsync(x => x.Id == type.Id);
+            var response = await GetAsync(id);
+            if(response == null) return false;
+            _context.Remove(response);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         public async Task<IEnumerable<T>> GetAsync()
         {
-            return await _dbSet.ToListAsync();
+            return await _context.Set<T>().ToListAsync();   
         }
 
         public async Task<T?> GetAsync(string id)
@@ -49,6 +48,16 @@ namespace GoogleAIStudio.Domain.Repositories
         public async Task SaveAsync()
         {
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> Update(T type)
+        {
+            var response = await GetAsync(type.Id);
+            if (response == null) return false;
+            response = type;
+            _context.Add(response);
+            _context.SaveChanges();
+            return true;
         }
     }
 }

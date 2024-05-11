@@ -1,7 +1,7 @@
 ﻿using Azure.Core;
 using GoogleAIStudio.Core.Interfaces;
+using GoogleAIStudio.Core.Interfaces.IPrompts;
 using GoogleAIStudio.Core.Models;
-using GoogleAIStudio.Infrastructure.Resources.ContentResources;
 using GoogleAIStudio.Infrastructure.Services.IServices;
 using RestSharp;
 using System;
@@ -12,20 +12,28 @@ using System.Threading.Tasks;
 
 namespace GoogleAIStudio.Infrastructure.Services
 {
-    public class PromptService : GenericService<Prompt>, IPromptService
+    public abstract class PromptService<P> : IPromptService<P> where P : Prompt
     {
-        public PromptService(IRepository<Prompt> repository, IRestClient client) : base(repository, client)
+        private readonly IPromptRepository<P> _repository;
+        protected readonly IRestClient _client;
+
+        protected PromptService(IPromptRepository<P> repository, IRestClient client)
         {
+            _repository = repository;
+            _client = client;
         }
 
-        public Task<Prompt> GenerateContent(Prompt prompt)
+
+        public async Task<P?> CreatePrompt(P prompt)
         {
-            throw new NotImplementedException();
+            var response = await _repository.AddAsync(prompt);
+            return response;
         }
-        /*
-       public async Task<Prompt> GenerateContent(string resource, Prompt prompt)
-       {
-           var response = await _client.PostJsonAsync<Prompt>(resource, prompt);
-       }*/
+
+        public async Task<IEnumerable<P>> GetAllPrompts()
+        {
+            var response = await _repository.GetAsync();
+            return response;
+        }
     }
 }

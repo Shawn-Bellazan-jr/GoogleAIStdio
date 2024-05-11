@@ -9,10 +9,15 @@ using System.Threading.Tasks;
 
 namespace GoogleAIStudio.Domain.Repositories
 {
-    public abstract class PromptRepository<T> : GenericRepository<T>, IPromptRepository<T> where T : Prompt
+    public class ChatPromptRepository : PromptRepository<ChatPrompt>, IChatPromptRepository
     {
-        protected PromptRepository(DbContext context) : base(context)
+        public ChatPromptRepository(DbContext context) : base(context)
         {
+        }
+
+        public List<ChatPrompt> GetChatPromptsByParticipant(string participant)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -11,8 +11,9 @@ namespace GoogleAIStudio.Data
 {
     public class AppDbContext: DbContext
     {
-        public DbSet<Part> Parts { get; set; }
-        public DbSet<Content> Contents { get; set; }
+        public DbSet<FreeformPrompt> FreeformPrompts { get; set; }
+        public DbSet<StructuredPrompt> StructuredPrompts { get; set; }
+        public DbSet<ChatPrompt> ChatPrompts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -21,8 +22,7 @@ namespace GoogleAIStudio.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new PartConfiguration());
-            modelBuilder.ApplyConfiguration(new ContentConfiguration());
+            modelBuilder.ApplyConfiguration(new FreeformPromptConfiguration());
         }
     }
 }

@@ -9,9 +9,8 @@ namespace GoogleAIStudio.Infrastructure
 {
     public interface IUnitOfWork
     {
-        IPartService Parts { get; }
-        IContentService Contents { get; }
-        IPromptService Prompts { get; }
+
+        IFreeformPromptService FreeformPrompts { get; }
         Task Save();
     }
 }

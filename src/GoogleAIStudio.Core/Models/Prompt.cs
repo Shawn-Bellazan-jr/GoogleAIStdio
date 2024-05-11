@@ -10,5 +10,9 @@ namespace GoogleAIStudio.Core.Models
 {
     public abstract class Prompt: BaseModel
     {
+        public DateTime CreatedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+
+        // Add any common properties or methods here
     }
 }

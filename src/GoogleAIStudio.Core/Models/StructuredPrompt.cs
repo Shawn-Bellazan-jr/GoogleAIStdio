@@ -8,5 +8,8 @@ namespace GoogleAIStudio.Core.Models
 {
     public class StructuredPrompt: Prompt
     {
+        public ICollection<PromptField> Fields { get; set; } = new List<PromptField>();
+
+
     }
 }

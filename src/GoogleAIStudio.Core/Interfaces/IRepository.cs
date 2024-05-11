@@ -9,11 +9,10 @@ namespace GoogleAIStudio.Core.Interfaces
 {
     public interface IRepository<T> where T : BaseModel
     {
-        Task<bool> ExistAsync(T type);
-        Task<T?> AddAsync(T type);
-        Task<T?> GetAsync(T type);
-        Task<T?> GetAsync(string id);
         Task<IEnumerable<T>> GetAsync();
-
+        Task<T?> GetAsync(string id);
+        Task<T?> AddAsync(T type);
+        Task<bool> Update(T type);
+        Task<bool> Delete(string id);
     }
 }

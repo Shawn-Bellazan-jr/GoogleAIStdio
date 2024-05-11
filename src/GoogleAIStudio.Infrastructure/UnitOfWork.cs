@@ -1,4 +1,5 @@
-﻿using GoogleAIStudio.Core.Models;
+﻿using GoogleAIStudio.Core.Interfaces.IPrompts;
+using GoogleAIStudio.Core.Models;
 using GoogleAIStudio.Data;
 using GoogleAIStudio.Domain.Repositories;
 using GoogleAIStudio.Infrastructure.Services;
@@ -19,19 +20,16 @@ namespace GoogleAIStudio.Infrastructure
         {
             _context = new AppDbContext();
 
-            var _clientContentUrl = "";
+            var _freeformRepository = new FreeformPromptRepository(_context);
+            var _structuredRepo = new StructuredPromptRepository(_context);
+            var _chatRepo = new ChatPromptRepository(_context);
 
-            var _clientContent = new RestClient(_clientContentUrl)
-                .AddDefaultHeader("Content-Type", "application/json");
+            var _googleAiStudio = "https://generativelanguage.googleapis.com/v1";
+            var _restClient = new RestClient(_googleAiStudio);
 
-            var _repositoryContent = new ContentRepository(_context);
-            Contents = new ContentService(_repositoryContent, _clientContent);
-
-
+            FreeformPrompts = new FreeformPromptService(_freeformRepository, _restClient);
         }
-        public IPartService Parts {  get; }
-        public IContentService Contents {  get; }
-        public IPromptService Prompts {  get; }
+        public IFreeformPromptService FreeformPrompts {  get; }
 
 
         public async Task Save()

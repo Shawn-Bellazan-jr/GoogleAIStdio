@@ -9,9 +9,10 @@ namespace GoogleAIStudio.Core.Interfaces
 {
     public interface IService<T> where T : BaseModel
     {
-        Task<bool> ExistAsync(T type);
-        Task<T?> AddAsync(T type);
-        Task<T?> GetAsync(T type);
-        Task<IEnumerable<T>> GetAsync();
+        Task<IEnumerable<T>> GetAllAsync();
+        Task<T> GetByIdAsync(int id);
+        Task<T> CreateAsync(T type);
+        Task<T> UpdateAsync(T type);
+        Task DeleteAsync(int id);
     }
 }

@@ -8,5 +8,8 @@ namespace GoogleAIStudio.Core.Models
 {
     public class ChatPrompt: Prompt
     {
+        public ICollection<ChatMessage> ChatHistory { get; set; } = new List<ChatMessage>(); // History of chat messages
+
+
     }
 }
